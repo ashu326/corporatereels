@@ -9,13 +9,14 @@ const app = express() ;
 app.set('view engine', 'ejs') ;
 app.set('views', 'views') ;
 
-//app.use(express.static(path.join(__dirname, 'public'))) ;
+app.use(express.static(path.join(__dirname, 'public'))) ;
 
 const homeRoutes = require('./routes/home');
+const errorControllers = require('./controllers/error');
 
 app.use(homeRoutes);
 
-//app.use(errorControllers.get404Page); 
+app.use(errorControllers.get404Page); 
 
 const port = process.env.PORT || 3000
 app.listen(port, () => console.log(`Listening on port....${port}`));
